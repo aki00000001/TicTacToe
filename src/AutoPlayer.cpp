@@ -7,7 +7,7 @@ Move AutoPlayer::GetNextMove(Board* ticTacBoard)
 {
 	Display::PromptPlayersTurn(name);
 
-	Move bestMove = MinMaxController::SelectBestMove(ticTacBoard, symbol);
+	Move bestMove = SelectBestMove(ticTacBoard, symbol);
 
 	return bestMove;
 }

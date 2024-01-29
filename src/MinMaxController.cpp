@@ -19,22 +19,20 @@ Move MinMaxController::SelectBestMove(Board* ticTacBoard, XO symbol)
 	int bestScore = symbol == X ? -100 : 100;
 	SelectMinMaxMove SelectMove = symbol == X ? SelectMaxMove : SelectMinMove;
 
-	for (int iMove = 0; iMove < ticTacBoard->nAvailableMoves; iMove++)
+	while ((int)availableMoves.size() > 0)
 	{
 		int currentScore;
-
+		int iMove = (int)availableMoves.size() > 1 ? rand() % (int)availableMoves.size() : 0;
 		Move currentMove = *(availableMoves.begin() + iMove);
-
+		availableMoves.erase(availableMoves.begin() + iMove);
 		ticTacBoard->SetMove(currentMove, symbol);
 
 		TerminalState score = ticTacBoard->DetermineGameState();
 
 		if (score == InProgress)
 		{
-			//availableMoves.erase(availableMoves.begin() + iMove);
 			XO nextSymbol = symbol == X ? O : X;
 			currentScore = MinMax(ticTacBoard, nextSymbol);
-			//availableMoves.insert(availableMoves.begin() + iMove, currentMove);
 		}
 		else
 		{
@@ -52,23 +50,22 @@ int MinMaxController::MinMax(Board* ticTacBoard, XO symbol)
 	int bestScore = symbol == X ? -100 : 100;
 	SelectMinMaxScore selectScore = symbol == X ? SelectMaxScore : SelectMinScore;
 
-	for (int iMove = 0; iMove < ticTacBoard->nAvailableMoves; iMove++)
+	while ((int)availableMoves.size() > 0)
 	{
-		int currentScore{};
-
+		int currentScore;
+		int iMove = (int)availableMoves.size() > 1 ? rand() % (int)availableMoves.size() : 0;
 		Move move = *(availableMoves.begin() + iMove);
-		
+		availableMoves.erase(availableMoves.begin() + iMove);
+
 		ticTacBoard->SetMove(move, symbol);
 
 		TerminalState score = ticTacBoard->DetermineGameState();
 
 		if (score == InProgress)
 		{
-			//availableMoves.erase(availableMoves.begin() + iMove);
 			XO nextSymbol = symbol == X ? O : X;
 			currentScore = MinMax(ticTacBoard, nextSymbol);
 			selectScore(currentScore, bestScore);
-			//availableMoves.insert(availableMoves.begin() + iMove, move);
 		}
 		else
 		{

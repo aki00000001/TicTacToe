@@ -39,6 +39,7 @@ Move Display::PromptPlayerForMove(const char* playerName)
 {
 	PromptPlayersTurn(playerName);
 	Move move{};
+	int row, col;
 	cout << "Enter row no. (between 1 and 3): ";
 	cin >> move.row;
 	move.row--;
@@ -66,11 +67,14 @@ void Display::PromptError(std::string errorMessage)
 void Display::PromptPlayerForDetails(char* playerName, bool& autoMode) {
 	cout << "Enter Player name: ";
 	cin >> playerName;
-
-	cout << "Enter Player type (manual = m / auto = a): ";
-	char playerType;
-	cin >> playerType;
-	autoMode = playerType == 'm' ? false : true;
-
+	bool validPlayerType = false;
+	do
+	{
+		cout << "Enter Player type (manual = m / CPU = c): ";
+		char playerType;
+		cin >> playerType;
+		validPlayerType = playerType == 'm' || playerType == 'c' ? true : false;
+		autoMode = playerType == 'm' ? false : true;
+	} while (!validPlayerType);
 	system("cls");
 }
