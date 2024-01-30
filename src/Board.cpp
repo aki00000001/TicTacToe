@@ -115,7 +115,7 @@ bool Board::CheckIfMoveValid(Move& move)
 		int row = move.row + 1;
 		int col = move.col + 1;
 		string message = "Error: Row and column should be between 1 and 3.\n";
-		message = message + "Enter row is: " + std::to_string(row) + "\nEntered column is: " + std::to_string(col);
+		message = message + "Entered row is: " + std::to_string(row) + "\nEntered column is: " + std::to_string(col);
 		message = message + "\nEnter correct row and column.";
 		PromptError(message);
 	}

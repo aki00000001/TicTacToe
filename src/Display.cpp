@@ -59,7 +59,7 @@ void Display::PromptDraw()
 	cout << "It's a draw " << endl;
 }
 
-void Display::PromptError(std::string errorMessage)
+void Display::PromptError(const std::string& errorMessage)
 {
 	cout << errorMessage << endl;
 }

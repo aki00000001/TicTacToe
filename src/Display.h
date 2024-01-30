@@ -14,7 +14,7 @@ public:
 
 	void PrompWinner(const char* turn);
 
-	void PromptError(std::string message);
+	void PromptError(const std::string& message);
 
 	static void PromptPlayerForDetails(char* playerName, bool& autoMode);
 };
