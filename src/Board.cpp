@@ -12,9 +12,10 @@ bool Board::SetMove(Move& move, XO symbol)
 {
 	bool moveValidity = false;
 	moveValidity = CheckIfMoveValid(move);
-	brd[(3 * move.row) + move.col] = symbol;
+	
 	if (moveValidity)
 	{
+		brd[(3 * move.row) + move.col] = symbol;
 		nAvailableMoves--;
 	}
 	else

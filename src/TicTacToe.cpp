@@ -50,7 +50,7 @@ void TicTacToe::RunGameCycle()
 		moveValidity = board.SetMove(move, currentPlayer->GetSymbol());
 	}
 	gameState = board.DetermineGameState();
-	Sleep(1000);
+	Sleep(250);
 }
 
 void TicTacToe::DeterminePlayerSymbol()
