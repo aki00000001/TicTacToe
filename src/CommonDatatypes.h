@@ -1,9 +1,5 @@
 #pragma once
-struct Move
-{
-	int row;
-	int col;
-};
+#include "Move.h"
 
 enum XO
 {

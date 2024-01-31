@@ -38,14 +38,8 @@ void Display::PromptPlayersTurn(const char* playerName)
 Move Display::PromptPlayerForMove(const char* playerName)
 {
 	PromptPlayersTurn(playerName);
-	Move move{};
-	int row, col;
-	cout << "Enter row no. (between 1 and 3): ";
-	cin >> move.row;
-	move.row--;
-	cout << "Enter column no. (between 1 and 3): ";
-	cin >> move.col;
-	move.col--;
+	Move move;
+	cin >> move;
 	return move;
 }
 

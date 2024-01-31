@@ -132,6 +132,7 @@
     <ClCompile Include="src\Display.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MinMaxController.cpp" />
+    <ClCompile Include="src\Move.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\TicTacToe.cpp" />
   </ItemGroup>
@@ -141,6 +142,7 @@
     <ClInclude Include="src\CommonDatatypes.h" />
     <ClInclude Include="src\Display.h" />
     <ClInclude Include="src\MinMaxController.h" />
+    <ClInclude Include="src\Move.h" />
     <ClInclude Include="src\TicTacToe.h" />
     <ClInclude Include="src\Player.h" />
   </ItemGroup>
