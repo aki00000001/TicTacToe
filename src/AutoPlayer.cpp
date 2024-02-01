@@ -5,7 +5,7 @@ AutoPlayer::AutoPlayer(char* playerName, bool autoModeEn) : Player(playerName, a
 
 Move AutoPlayer::GetNextMove(Board* ticTacBoard)
 {
-	Display::PromptPlayersTurn(name);
+	PromptPlayersTurn(name);
 
 	Move bestMove = SelectBestMove(ticTacBoard, symbol);
 

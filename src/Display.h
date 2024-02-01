@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "CommonDatatypes.h"
+#include "Move.h"
 
 class Display {
 public:

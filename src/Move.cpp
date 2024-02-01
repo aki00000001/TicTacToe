@@ -1,6 +1,14 @@
 #include "Move.h"
 #include <iostream>
 
+Move::Move()
+	:row(0), col(0)
+{}
+
+Move::Move(int r, int c)
+	:row(r), col(c)
+{}
+
 int Move::ArrayIndex()
 {
 	return (3 * this->row) + this->col - 4;

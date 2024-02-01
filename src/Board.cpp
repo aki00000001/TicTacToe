@@ -38,7 +38,7 @@ vector<Move> Board::GetAvailableMoves()
 	{
 		for (unsigned int j = 1; j < 4; j++)
 		{
-			Move move{ i, j };
+			Move move(i, j);
 			if (brd[move.ArrayIndex()] == _)
 			{
 				availableMove.push_back(move);

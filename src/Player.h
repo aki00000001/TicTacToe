@@ -2,6 +2,7 @@
 
 #include "Board.h"
 #include "CommonDatatypes.h"
+#include "Move.h"
 
 class Player : public  Display
 {
