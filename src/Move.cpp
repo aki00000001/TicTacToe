@@ -11,7 +11,7 @@ Move::Move(int r, int c)
 
 int Move::ArrayIndex()
 {
-	return (3 * this->row) + this->col - 4;
+	return ArrayIdx(row, col);
 }
 
 bool Move::InRange()

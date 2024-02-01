@@ -1,5 +1,6 @@
 #include <vector>
 #include "MinMaxController.h"
+#include <time.h>
 
 using std::vector;
 
@@ -14,17 +15,34 @@ void SelectMinMove(int& currentScore, int& bestScore, Move& currentMove, Move& b
 
 Move MinMaxController::SelectBestMove(Board* ticTacBoard, XO symbol)
 {
-	vector<Move> availableMoves = ticTacBoard->GetAvailableMoves();
+	vector<int>idx;
+	idx.reserve(ticTacBoard->nAvailableMoves);
+	srand(time(0));
+	while ((int)idx.size() < ticTacBoard->nAvailableMoves)
+	{
+		bool contains = false;
+		int num = rand() % ticTacBoard->nAvailableMoves;
+		for (int i = 0; i < (int)idx.size() && !contains; i++)
+		{
+			if (idx[i] == num)
+				contains = true;
+		}
+		if (!contains)
+			idx.emplace_back(num);
+	}
+
+	vector<Move> availableMoves;
+	availableMoves.reserve(9);
+	ticTacBoard->GetAvailableMoves(availableMoves);
 	Move bestMove{ *(availableMoves.begin()) };
 	int bestScore = symbol == X ? -100 : 100;
 	SelectMinMaxMove SelectMove = symbol == X ? SelectMaxMove : SelectMinMove;
 
-	while ((int)availableMoves.size() > 0)
+	for (int i = 0; i < ticTacBoard->nAvailableMoves; i++)
 	{
 		int currentScore;
-		int iMove = (int)availableMoves.size() > 1 ? rand() % (int)availableMoves.size() : 0;
-		Move currentMove = *(availableMoves.begin() + iMove);
-		availableMoves.erase(availableMoves.begin() + iMove);
+		Move currentMove = *(availableMoves.begin() + idx[i]);
+		availableMoves.erase(availableMoves.begin() + idx[i]);
 		ticTacBoard->SetMove(currentMove, symbol);
 
 		TerminalState score = ticTacBoard->DetermineGameState();
@@ -32,28 +50,27 @@ Move MinMaxController::SelectBestMove(Board* ticTacBoard, XO symbol)
 		if (score == InProgress)
 		{
 			XO nextSymbol = symbol == X ? O : X;
-			currentScore = MinMax(ticTacBoard, nextSymbol);
+			currentScore = MinMax(ticTacBoard, availableMoves, nextSymbol);
 		}
 		else
 		{
 			currentScore = (int)score;
 		}
-		ticTacBoard->RevertMove(currentMove);
 		SelectMove(currentScore, bestScore, currentMove, bestMove);
+		ticTacBoard->RevertMove(currentMove);
+		availableMoves.insert(availableMoves.begin() + idx[i], currentMove);
 	}
 	return bestMove;
 }
 
-int MinMaxController::MinMax(Board* ticTacBoard, XO symbol)
+int MinMaxController::MinMax(Board* ticTacBoard, vector<Move>& availableMoves, XO symbol)
 {
-	vector<Move> availableMoves = ticTacBoard->GetAvailableMoves();
 	int bestScore = symbol == X ? -100 : 100;
 	SelectMinMaxScore selectScore = symbol == X ? SelectMaxScore : SelectMinScore;
 
-	while ((int)availableMoves.size() > 0)
+	for (int iMove = 0; iMove < ticTacBoard->nAvailableMoves; iMove++)
 	{
 		int currentScore;
-		int iMove = (int)availableMoves.size() > 1 ? rand() % (int)availableMoves.size() : 0;
 		Move move = *(availableMoves.begin() + iMove);
 		availableMoves.erase(availableMoves.begin() + iMove);
 
@@ -64,7 +81,7 @@ int MinMaxController::MinMax(Board* ticTacBoard, XO symbol)
 		if (score == InProgress)
 		{
 			XO nextSymbol = symbol == X ? O : X;
-			currentScore = MinMax(ticTacBoard, nextSymbol);
+			currentScore = MinMax(ticTacBoard, availableMoves, nextSymbol);
 			selectScore(currentScore, bestScore);
 		}
 		else
@@ -73,6 +90,7 @@ int MinMaxController::MinMax(Board* ticTacBoard, XO symbol)
 		}
 
 		ticTacBoard->RevertMove(move);
+		availableMoves.insert(availableMoves.begin() + iMove, move);
 	}
 	return bestScore;
 }

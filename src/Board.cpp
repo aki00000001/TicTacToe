@@ -1,11 +1,12 @@
 # include "Board.h"
 # include <string>
+#include <iostream>
 
 using std::string;
 using std::vector;
 
 Board::Board()
-	:brd{ _, _, _, _, _, _, _, _, _ }, nAvailableMoves(9)
+	:brd{ _, _, _ , _ , _ , _ , _ , _ , _ }, nAvailableMoves(9)
 {}
 
 bool Board::SetMove(Move& move, XO symbol)
@@ -31,17 +32,16 @@ void Board::RevertMove(Move& move)
 	nAvailableMoves++;
 }
 
-vector<Move> Board::GetAvailableMoves()
+void Board::GetAvailableMoves(vector<Move>& availableMove)
 {
-	std::vector<Move> availableMove;
 	for (unsigned int i = 1; i < 4; i++)
 	{
 		for (unsigned int j = 1; j < 4; j++)
 		{
-			Move move(i, j);
-			if (brd[move.ArrayIndex()] == _)
+			int idx = ArrayIdx(i, j);
+			if (brd[idx] == _)
 			{
-				availableMove.push_back(move);
+				availableMove.emplace_back(i, j);
 			}
 			else
 			{
@@ -49,7 +49,6 @@ vector<Move> Board::GetAvailableMoves()
 			}
 		}
 	}
-	return availableMove;
 }
 
 void Board::DisplayBoard()

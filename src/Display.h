@@ -2,6 +2,7 @@
 #include <string>
 #include "CommonDatatypes.h"
 #include "Move.h"
+#include <vector>
 
 class Display {
 public:

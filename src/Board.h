@@ -23,7 +23,7 @@ private:
 
 	bool CheckMoveAvailability(Move& move);
 
-	std::vector<Move> GetAvailableMoves();
+	void GetAvailableMoves(std::vector<Move>& availableMove);
 
 	void RevertMove(Move& move);
 

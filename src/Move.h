@@ -1,6 +1,9 @@
 #pragma once
 #include <string>
 
+
+#define ArrayIdx(row, col) (3 * row) + col - 4;
+
 class Move
 {
 private:

@@ -7,7 +7,7 @@ using std::endl;
 
 void Display::DisplayBoard(XO* brd)
 {
-	system("cls");
+	//system("cls");
 	
 	char symbol[9];
 	for (int i = 0; i < 3; i++)
