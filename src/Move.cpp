@@ -9,17 +9,21 @@ Move::Move(int r, int c)
 	:row(r), col(c)
 {}
 
-int Move::ArrayIndex()
+Move::Move(const Move& move)
+	:row(move.row), col(move.col)
+{}
+
+int Move::ArrayIndex() const
 {
 	return ArrayIdx(row, col);
 }
 
-bool Move::InRange()
+bool Move::InRange() const
 {
 	return this->row < 4 && this->col < 4 && this->row > 0 && this->col > 0;
 }
 
-std::string& Move::operator+(std::string& str)
+std::string& Move::operator+(std::string& str) const
 {
 	str = str + "(" + std::to_string(row) + ", " + std::to_string(col) + ")";
 	return str;

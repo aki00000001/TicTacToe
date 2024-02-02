@@ -1,8 +1,8 @@
 #pragma once
 #include <string>
+#include <vector>
 #include "CommonDatatypes.h"
 #include "Move.h"
-#include <vector>
 
 class Display {
 public:
@@ -10,11 +10,11 @@ public:
 
 	void PromptPlayersTurn(const char* playerName);
 
-	Move PromptPlayerForMove(const char* playerName);
+	void PromptPlayerForMove(const char* playerName, Move& move);
 
 	void PromptDraw();
 
-	void PrompWinner(const char* turn);
+	void PromptWinner(const char* turn);
 
 	void PromptError(const std::string& message);
 

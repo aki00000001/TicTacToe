@@ -2,14 +2,16 @@
 #include "CommonDatatypes.h"
 #include "Board.h"
 #include "Player.h"
+#include "MinMaxController.h"
 
 class TicTacToe
 {
 private:
 	Board board;
 	Player* players[2];
-	TerminalState gameState = InProgress;
-	Player* currentPlayer = NULL;
+	TerminalState gameState;
+	Player* currentPlayer;
+	MinMaxController controller;
 
 public:
 	TicTacToe();
@@ -18,8 +20,7 @@ public:
 
 	void RunGameCycle();
 
+	~TicTacToe();
 private:
-	void DeterminePlayerSymbol();
-
-	void SetCurrentPlayerForTurn();
+	XO GetRandomSymbol();
 };

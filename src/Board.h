@@ -1,31 +1,32 @@
 #pragma once
-#include "CommonDatatypes.h"
 #include <vector>
+#include "CommonDatatypes.h"
 #include "Display.h"
 
 class Board : public Display
 {
 private:
 	XO brd[3 * 3];
+	std::vector<Move> availableMoves;
 	int nAvailableMoves;
 
 public:
 	Board();
 
-	bool SetMove(Move& move, XO symbol);
+	bool SetMove(const Move& move, const XO symbol);
 
 	void DisplayBoard();
 
 	TerminalState DetermineGameState();
 
 private:
-	bool CheckIfMoveValid(Move& move);
+	bool CheckMoveValidity(const Move& move);
 
-	bool CheckMoveAvailability(Move& move);
+	bool CheckMoveAvailability(const Move& move);
 
-	void GetAvailableMoves(std::vector<Move>& availableMove);
+	void GetAvailableMoves(std::vector<Move>& outAvailableMove);
 
-	void RevertMove(Move& move);
+	void RevertMove(const Move& move);
 
 	friend class MinMaxController;
 };

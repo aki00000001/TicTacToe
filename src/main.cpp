@@ -3,9 +3,11 @@
 
 int main()
 {
-	TicTacToe ticTacToe;
+	{
+		TicTacToe ticTacToe;
 
-	ticTacToe.ExecuteGameEvent();
+		ticTacToe.ExecuteGameEvent();
+	}
 
 	std::cin.get();
 }

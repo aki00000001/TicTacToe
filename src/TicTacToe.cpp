@@ -1,34 +1,35 @@
 #include <windows.h>
-#include <cstdlib>
-#include <ctime>
+#include <time.h>
 #include "TicTacToe.h"
 #include "AutoPlayer.h"
 
 TicTacToe::TicTacToe()
+	:board(Board()), gameState(InProgress), controller(MinMaxController(&board))
 {
+	XO sym = GetRandomSymbol();
 	for (int i = 0; i < 2; i++)
 	{
 		char playerName[10];
 		bool autoModeEn = false;
 		Display::PromptPlayerForDetails(playerName, autoModeEn);
+		sym = sym == X ? O : X;
 		if (autoModeEn)
 		{
-			players[i] = new AutoPlayer(playerName, autoModeEn);
+			players[i] = new AutoPlayer(playerName, sym, &controller);
 		}
 		else
 		{
-			players[i] = new Player(playerName, autoModeEn);
+			players[i] = new Player(playerName, sym);
 		}
 	}
-
-	DeterminePlayerSymbol();
+	currentPlayer = *players[0] == X ? players[1] : players[0];
 }
 
 void TicTacToe::ExecuteGameEvent()
 {
 	while (gameState == InProgress)
 	{
-		SetCurrentPlayerForTurn();
+		currentPlayer = currentPlayer == players[0] ? players[1] : players[0];
 		board.DisplayBoard();
 		RunGameCycle();
 	}
@@ -36,8 +37,6 @@ void TicTacToe::ExecuteGameEvent()
 	board.DisplayBoard();
 
 	gameState == Draw ? board.PromptDraw() : currentPlayer->DeclareWinner();
-	delete players[0];
-	delete players[1];
 }
 
 void TicTacToe::RunGameCycle()
@@ -46,33 +45,24 @@ void TicTacToe::RunGameCycle()
 	Move move{};
 	while (!moveValidity)
 	{
-		move         = currentPlayer->GetNextMove(&board);
+		currentPlayer->GetNextMove(move);
 		moveValidity = board.SetMove(move, currentPlayer->GetSymbol());
 	}
 	gameState = board.DetermineGameState();
 	Sleep(250);
 }
 
-void TicTacToe::DeterminePlayerSymbol()
+XO TicTacToe::GetRandomSymbol()
 {
-	srand((unsigned int)time(NULL));
+	srand((unsigned int)time(0));
 	int randomNo = rand() % 2;
-
-	if (randomNo > 0)
-	{
-		players[0]->SetSymbol(X);
-		players[1]->SetSymbol(O);
-		currentPlayer = players[1];
-	}
-	else
-	{
-		players[0]->SetSymbol(O);
-		players[1]->SetSymbol(X);
-		currentPlayer = players[0];
-	}
+	return randomNo > 0 ? X : O;
 }
 
-void TicTacToe::SetCurrentPlayerForTurn()
+TicTacToe::~TicTacToe()
 {
-	currentPlayer = currentPlayer == players[0] ? players[1] : players[0];
+	for (int i = 0; i < 2; i++)
+	{
+		delete players[i];
+	}
 }

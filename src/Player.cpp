@@ -1,16 +1,10 @@
 #include "Display.h"
 #include "Player.h"
-#include <string>
-#include <vector>
 
-using std::vector;
-using std::string;
-
-Player::Player(char* playerName, bool autoModeEn)
+Player::Player(char* playerName, XO sym)
 {
 	strcpy_s(name, playerName);
-	autoModeEnable = autoModeEn;
-	symbol = _;
+	symbol = sym;
 }
 
 void Player::SetSymbol(XO sym)
@@ -18,21 +12,25 @@ void Player::SetSymbol(XO sym)
 	symbol = sym;
 }
 
-XO Player::GetSymbol()
+XO Player::GetSymbol() const
 {
 	return symbol;
 }
 
-Move Player::GetNextMove(Board* ticTacBoard)
+void Player::GetNextMove(Move& outMove)
 {
-	Move move = PromptPlayerForMove(name);
-	return move;
+	PromptPlayerForMove(name, outMove);
 }
 
 void Player::DeclareWinner()
 {
-	PrompWinner(name);
+	PromptWinner(name);
 }
 
 Player::~Player()
 {}
+
+bool Player::operator == (const XO symbol) const
+{
+	return symbol == symbol;
+}

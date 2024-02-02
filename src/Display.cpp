@@ -7,14 +7,14 @@ using std::endl;
 
 void Display::DisplayBoard(XO* brd)
 {
-	//system("cls");
+	system("cls");
 	
 	char symbol[9];
-	for (int i = 0; i < 3; i++)
+	for (int i = 1; i < 4; i++)
 	{
-		for (int j = 0; j < 3; j++)
+		for (int j = 1; j < 4; j++)
 		{
-			symbol[(3 * i) + j] = brd[(3 * i) + j] != _ ? brd[(3 * i) + j] == O ? 'O' : 'X' : ' ';
+			symbol[ArrayIdx(i, j)] = brd[ArrayIdx(i, j)] != _ ? brd[ArrayIdx(i, j)] == O ? 'O' : 'X' : ' ';
 		}
 	}
 
@@ -35,15 +35,13 @@ void Display::PromptPlayersTurn(const char* playerName)
 	cout << "It's " << playerName << "'s turn." << endl;
 }
 
-Move Display::PromptPlayerForMove(const char* playerName)
+void Display::PromptPlayerForMove(const char* playerName, Move& move)
 {
 	PromptPlayersTurn(playerName);
-	Move move;
 	cin >> move;
-	return move;
 }
 
-void Display::PrompWinner(const char* turn)
+void Display::PromptWinner(const char* turn)
 {
 	cout << "The winner is " << turn << endl;
 }

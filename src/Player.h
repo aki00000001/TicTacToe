@@ -1,28 +1,29 @@
 #pragma once
 
-#include "Board.h"
 #include "CommonDatatypes.h"
+#include "Display.h"
 #include "Move.h"
 
 class Player : public  Display
 {
 protected:
 	char name[10];
-	bool autoModeEnable;
+
 	XO symbol;
 
 public:
-	Player(char* playerName, bool autoModeEn);
+	Player(char* playerName, XO sym);
 
 	void SetSymbol(XO symbol);
 
-	XO GetSymbol();
+	XO GetSymbol() const;
 
-	virtual Move GetNextMove(Board* ticTacBoard);
+	virtual void GetNextMove(Move& outMove);
 
 	void DeclareWinner();
 
-	~Player();
-private:
-	const char* GetName();
+	virtual ~Player();
+
+	bool operator == (const XO symbol) const;
 };
+

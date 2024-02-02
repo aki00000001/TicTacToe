@@ -2,10 +2,15 @@
 #include "Player.h"
 #include "MinMaxController.h"
 
-class AutoPlayer : public Player, public MinMaxController
+class AutoPlayer : public Player
 {
-public:
-	AutoPlayer(char* playerName, bool autoModeEn);
+private:
+	MinMaxController* controller;
 
-	Move GetNextMove(Board* ticTacBoard);
+public:
+	AutoPlayer(char* playerName, XO sym, MinMaxController* controller);
+
+	void GetNextMove(Move& outMove);
+
+	virtual ~AutoPlayer();
 };

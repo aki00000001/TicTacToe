@@ -1,8 +1,7 @@
 #pragma once
 #include <string>
 
-
-#define ArrayIdx(row, col) (3 * row) + col - 4;
+#define ArrayIdx(row, col) (3 * row) + col - 4
 
 class Move
 {
@@ -12,9 +11,16 @@ private:
 
 public:
 	Move();
+
 	Move(int r, int c);
-	int ArrayIndex();
-	bool InRange();
-	std::string& operator +(std::string& str);
+	
+	explicit Move(const Move& move);
+	
+	int ArrayIndex() const;
+	
+	bool InRange() const;
+	
+	std::string& operator +(std::string& str) const;
+	
 	friend std::istream& operator >>(std::istream& stream, Move& move);
 };

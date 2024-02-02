@@ -1,23 +1,31 @@
-# include "Board.h"
 # include <string>
-#include <iostream>
+# include "Board.h"
 
 using std::string;
 using std::vector;
 
 Board::Board()
 	:brd{ _, _, _ , _ , _ , _ , _ , _ , _ }, nAvailableMoves(9)
-{}
-
-bool Board::SetMove(Move& move, XO symbol)
 {
-	bool moveValidity = false;
-	moveValidity = CheckIfMoveValid(move);
+	availableMoves.reserve(9);
+	for (unsigned int i = 1; i < 4; i++)
+	{
+		for (unsigned int j = 1; j < 4; j++)
+		{
+			availableMoves.emplace_back(i, j);
+		}
+	}
+}
+
+bool Board::SetMove(const Move& move, const XO symbol)
+{
+	bool moveValidity = CheckMoveValidity(move);
 	
 	if (moveValidity)
 	{
 		brd[move.ArrayIndex()] = symbol;
-		nAvailableMoves--;
+		//availableMoves.erase(availableMoves.begin() + move.ArrayIndex());
+		nAvailableMoves--;// = (int)availableMoves.size();
 	}
 	else
 	{
@@ -26,10 +34,11 @@ bool Board::SetMove(Move& move, XO symbol)
 	return moveValidity;
 }
 
-void Board::RevertMove(Move& move)
+void Board::RevertMove(const Move& move)
 {
 	brd[move.ArrayIndex()] = _;
-	nAvailableMoves++;
+	//availableMoves.insert(availableMoves.begin() + move.ArrayIndex(), move);
+	nAvailableMoves++;// = (int)availableMoves.size();
 }
 
 void Board::GetAvailableMoves(vector<Move>& availableMove)
@@ -107,21 +116,21 @@ TerminalState Board::DetermineGameState()
 	return gameState;
 }
 
-bool Board::CheckIfMoveValid(Move& move)
+bool Board::CheckMoveValidity(const Move& move)
 {
 	bool moveValidity = false;
 	if (!move.InRange())
 	{
 		string message = "Error: Row and column should be between 1 and 3.\nEntered move is (row, col):";
-		message = move + message;
-		message = message + "\nEnter new move.";
+		message        = move + message;
+		message        = message + "\nEnter new move.";
 		PromptError(message);
 	}
 	else if (!CheckMoveAvailability(move))
 	{
 		string message = "Error: Enter Rows and columns is occupied.\nEntered move is (row, col):";
-		message = move + message;
-		message = message + "\nEnter new move.";
+		message        = move + message;
+		message        = message + "\nEnter new move.";
 		PromptError(message);
 	}
 	else
@@ -132,7 +141,7 @@ bool Board::CheckIfMoveValid(Move& move)
 	return moveValidity;
 }
 
-bool Board::CheckMoveAvailability(Move &move)
+bool Board::CheckMoveAvailability(const Move &move)
 {
 	bool moveAvailable = false;
 	if (brd[move.ArrayIndex()] == _)
