@@ -59,10 +59,13 @@
     <ClInclude Include="src\MinMaxController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\AutoPlayer.h">
+    <ClInclude Include="src\Move.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Move.h">
+    <ClInclude Include="src\Player\AutoPlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Player\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
