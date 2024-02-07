@@ -21,6 +21,10 @@ public:
 	bool InRange() const;
 	
 	std::string& operator +(std::string& str) const;
-	
-	friend std::istream& operator >>(std::istream& stream, Move& move);
+
+	bool operator ==(const Move &second) const;
+
+	bool operator !=(const Move& second) const;
+
+	friend std::istream& operator >>(std::istream& stream, Move& move);	
 };

@@ -72,7 +72,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Personal\CppLearning\CloneRepo\TicTacToe\src\Player;C:\Personal\CppLearning\CloneRepo\TicTacToe\src\Move;C:\Personal\CppLearning\CloneRepo\TicTacToe\src\MinMaxController;C:\Personal\CppLearning\CloneRepo\TicTacToe\src\CommonFiles;C:\Personal\CppLearning\CloneRepo\TicTacToe\src\Board;$(SolutionDir);$(SolutionDir)</IncludePath>
-    <SourcePath>C:\Personal\CppLearning\CloneRepo\TicTacToe\src\Player;C:\Personal\CppLearning\CloneRepo\TicTacToe\src\Move;C:\Personal\CppLearning\CloneRepo\TicTacToe\src\MinMaxController;C:\Personal\CppLearning\CloneRepo\TicTacToe\src\CommonFiles;C:\Personal\CppLearning\CloneRepo\TicTacToe\src\Board;$(SourcePath)</SourcePath>
+    <SourcePath>C:\Personal\CppLearning\CloneRepo\TicTacToe\src\Player;C:\Personal\CppLearning\CloneRepo\TicTacToe\src\Move;C:\Personal\CppLearning\CloneRepo\TicTacToe\src\Move\Test;C:\Personal\CppLearning\CloneRepo\TicTacToe\src\MinMaxController;C:\Personal\CppLearning\CloneRepo\TicTacToe\src\CommonFiles;C:\Personal\CppLearning\CloneRepo\TicTacToe\src\Board;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Personal\CppLearning\CloneRepo\TicTacToe\src\Player;C:\Personal\CppLearning\CloneRepo\TicTacToe\src\Move;C:\Personal\CppLearning\CloneRepo\TicTacToe\src\MinMaxController;C:\Personal\CppLearning\CloneRepo\TicTacToe\src\CommonFiles;C:\Personal\CppLearning\CloneRepo\TicTacToe\src\Board;;$(SolutionDir)</IncludePath>
@@ -137,6 +137,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Move\MoveTests.cpp" />
     <ClCompile Include="src\Player\AutoPlayer.cpp" />
     <ClCompile Include="src\Board\Board.cpp" />
     <ClCompile Include="src\CommonFiles\Display.cpp" />
@@ -156,7 +157,17 @@
     <ClInclude Include="src\Player\Player.h" />
     <ClInclude Include="src\Board\TicTacToe.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="packages\Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.1.7\build\native\Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.targets" Condition="Exists('packages\Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.1.7\build\native\Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.1.7\build\native\Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.1.7\build\native\Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.targets'))" />
+  </Target>
 </Project>

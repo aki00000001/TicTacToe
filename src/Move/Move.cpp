@@ -37,3 +37,27 @@ std::istream& operator >>(std::istream& stream, Move& move)
 	stream >> move.col;
 	return stream;
 }
+
+bool Move::operator == (const Move& second) const
+{
+	if (row == second.row && col == second.col)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool Move::operator != (const Move& second) const
+{
+	if (row == second.row && col == second.col)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
