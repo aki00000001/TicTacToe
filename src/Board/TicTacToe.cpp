@@ -22,7 +22,7 @@ TicTacToe::TicTacToe()
 			players[i] = new Player(playerName, sym);
 		}
 	}
-	currentPlayer = *players[0] == X ? players[1] : players[0];
+	currentPlayer = players[0]->GetSymbol() == X ? players[1] : players[0];
 }
 
 void TicTacToe::ExecuteGameEvent()
@@ -37,6 +37,12 @@ void TicTacToe::ExecuteGameEvent()
 	board.DisplayBoard();
 
 	gameState == Draw ? board.PromptDraw() : currentPlayer->DeclareWinner();
+
+	for (int i = 1; i >= 0; i--)
+	{
+		delete players[i];
+		players[i] = NULL;
+	}
 }
 
 void TicTacToe::RunGameCycle()
@@ -58,11 +64,6 @@ XO TicTacToe::GetRandomSymbol()
 	int randomNo = rand() % 2;
 	return randomNo > 0 ? X : O;
 }
-
-TicTacToe::~TicTacToe()
-{
-	for (int i = 0; i < 2; i++)
-	{
-		delete players[i];
-	}
-}
+//
+//TicTacToe::~TicTacToe()
+//{}

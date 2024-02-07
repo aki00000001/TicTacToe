@@ -2,7 +2,7 @@
 #include <gtest/gtest.h>
 #include "TicTacToe.h"
 
-#define RUN_TESTS true
+#define RUN_TESTS false
 
 int main(int argc, char** argv)
 {
@@ -12,7 +12,6 @@ int main(int argc, char** argv)
 	return RUN_ALL_TESTS();
 
 #else
-
 	{
 		TicTacToe ticTacToe;
 
@@ -20,6 +19,6 @@ int main(int argc, char** argv)
 	}
 
 	std::cin.get();
-
+	return 0;
 #endif
 }
