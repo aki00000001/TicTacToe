@@ -7,7 +7,7 @@ class Board : public Display
 {
 private:
 	XO brd[3 * 3];
-	std::vector<Move> availableMoves;
+
 	int nAvailableMoves;
 
 public:

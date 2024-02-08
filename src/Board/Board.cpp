@@ -6,16 +6,7 @@ using std::vector;
 
 Board::Board()
 	:brd{ _, _, _ , _ , _ , _ , _ , _ , _ }, nAvailableMoves(9)
-{
-	availableMoves.reserve(9);
-	for (unsigned int i = 1; i < 4; i++)
-	{
-		for (unsigned int j = 1; j < 4; j++)
-		{
-			availableMoves.emplace_back(i, j);
-		}
-	}
-}
+{}
 
 bool Board::SetMove(const Move& move, const XO symbol)
 {
@@ -24,8 +15,7 @@ bool Board::SetMove(const Move& move, const XO symbol)
 	if (moveValidity)
 	{
 		brd[move.ArrayIndex()] = symbol;
-		//availableMoves.erase(availableMoves.begin() + move.ArrayIndex());
-		nAvailableMoves--;// = (int)availableMoves.size();
+		nAvailableMoves--;
 	}
 	else
 	{
@@ -37,8 +27,7 @@ bool Board::SetMove(const Move& move, const XO symbol)
 void Board::RevertMove(const Move& move)
 {
 	brd[move.ArrayIndex()] = _;
-	//availableMoves.insert(availableMoves.begin() + move.ArrayIndex(), move);
-	nAvailableMoves++;// = (int)availableMoves.size();
+	nAvailableMoves++;
 }
 
 void Board::GetAvailableMoves(vector<Move>& availableMove)

@@ -45,6 +45,9 @@
     <ClCompile Include="src\Move\MoveTests.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Board\BoardTests.cpp">
+      <Filter>Test Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Board\Board.h">

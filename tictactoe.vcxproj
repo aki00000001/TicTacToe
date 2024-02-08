@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Board\Board.cpp" />
+    <ClCompile Include="src\Board\BoardTests.cpp" />
     <ClCompile Include="src\Board\TicTacToe.cpp" />
     <ClCompile Include="src\CommonFiles\Display.cpp" />
     <ClCompile Include="src\main.cpp" />
