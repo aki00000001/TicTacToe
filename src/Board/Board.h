@@ -29,4 +29,6 @@ private:
 	void RevertMove(const Move& move);
 
 	friend class MinMaxController;
+
+	friend class BoardPrivateMethodTest;
 };

@@ -139,10 +139,12 @@
     <ClCompile Include="src\CommonFiles\Display.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MinMaxController\MinMaxController.cpp" />
+    <ClCompile Include="src\MinMaxController\MinMaxControllerTest.cpp" />
     <ClCompile Include="src\Move\Move.cpp" />
     <ClCompile Include="src\Move\MoveTests.cpp" />
     <ClCompile Include="src\Player\AutoPlayer.cpp" />
     <ClCompile Include="src\Player\Player.cpp" />
+    <ClCompile Include="src\Player\PlayerTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Board\Board.h" />

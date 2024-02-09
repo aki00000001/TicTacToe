@@ -2,9 +2,9 @@
 #include "Move.h"
 #include <iostream>
 
-namespace
+namespace MoveTests
 {
-	TEST(MoveTests, ConstructorTest)
+	TEST(MoveTest, ConstructorTest)
 	{
 		Move m1;
 		Move m2(1, 1);
@@ -17,7 +17,7 @@ namespace
 		EXPECT_EQ(m1, m2);
 	}
 
-	TEST(MoveTests, InRangeTest)
+	TEST(MoveTest, InRangeTest)
 	{
 		Move m1;
 		EXPECT_FALSE(m1.InRange());
@@ -38,7 +38,7 @@ namespace
 		EXPECT_TRUE(m6.InRange());
 	}
 
-	TEST(MoveTests, ArrayIndexTest)
+	TEST(MoveTest, ArrayIndexTest)
 	{
 		Move m1;
 		EXPECT_EQ(-4, m1.ArrayIndex());
@@ -47,7 +47,7 @@ namespace
 		EXPECT_EQ(4, m2.ArrayIndex());
 	}
 
-	TEST(MoveTests, OperatorTest)
+	TEST(MoveTest, OperatorTest)
 	{
 		Move m1;
 		Move m2;
@@ -59,4 +59,5 @@ namespace
 		actualString               = m1 + actualString;
 		EXPECT_EQ(actualString, expectedString);
 	}
+
 }

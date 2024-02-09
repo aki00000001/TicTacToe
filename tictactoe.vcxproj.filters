@@ -48,6 +48,12 @@
     <ClCompile Include="src\Board\BoardTests.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\MinMaxController\MinMaxControllerTest.cpp">
+      <Filter>Test Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Player\PlayerTests.cpp">
+      <Filter>Test Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Board\Board.h">

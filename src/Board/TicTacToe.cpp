@@ -64,6 +64,3 @@ XO TicTacToe::GetRandomSymbol()
 	int randomNo = rand() % 2;
 	return randomNo > 0 ? X : O;
 }
-//
-//TicTacToe::~TicTacToe()
-//{}

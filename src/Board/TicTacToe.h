@@ -20,8 +20,6 @@ public:
 
 	void RunGameCycle();
 
-	/*~TicTacToe();*/
-
 private:
 	XO GetRandomSymbol();
 };
