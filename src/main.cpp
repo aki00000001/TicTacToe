@@ -1,24 +1,23 @@
 #include <iostream>
 #include <gtest/gtest.h>
+
 #include "TicTacToe.h"
 
-#define RUN_TESTS false
 
 int main(int argc, char** argv)
 {
-#if RUN_TESTS
+	if (argc > 1 && std::string("TEST") == argv[1])
+	{
+		testing::InitGoogleTest(&argc, argv);
 
-	testing::InitGoogleTest(&argc, argv);
-	return RUN_ALL_TESTS();
-
-#else
+		return RUN_ALL_TESTS();
+	}
+	else
 	{
 		TicTacToe ticTacToe;
 
 		ticTacToe.ExecuteGameEvent();
-	}
 
-	std::cin.get();
-	return 0;
-#endif
+		return 0;
+	}
 }
