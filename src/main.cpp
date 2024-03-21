@@ -3,7 +3,6 @@
 
 #include "TicTacToe.h"
 
-
 int main(int argc, char** argv)
 {
 	if (argc > 1 && std::string("TEST") == argv[1])
