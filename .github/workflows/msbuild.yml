@@ -44,3 +44,8 @@ jobs:
       working-directory: ${{github.workspace}}/x64/Release
       shell: cmd
       run: TicTacToe.exe TEST
+          
+    - name: Execute Run
+      working-directory: ${{github.workspace}}/x64/Release
+      shell: cmd
+      run: TicTacToe.exe Player1 c Player2 c
