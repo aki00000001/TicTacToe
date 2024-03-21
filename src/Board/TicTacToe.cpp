@@ -25,6 +25,27 @@ TicTacToe::TicTacToe()
 	currentPlayer = players[0]->GetSymbol() == X ? players[1] : players[0];
 }
 
+TicTacToe::TicTacToe(char** argv)
+	:board(Board()), gameState(InProgress), controller(MinMaxController(&board))
+{
+	XO sym = GetRandomSymbol();
+	int j = 1;
+	for (int i = 0; i < 2; i++)
+	{
+		sym = sym == X ? O : X;
+		if (std::string("c") == argv[j + 1])
+		{
+			players[i] = new AutoPlayer(argv[j], sym, &controller);
+		}
+		else
+		{
+			players[i] = new Player(argv[j], sym);
+		}
+		j = j + 2;
+	}
+	currentPlayer = players[0]->GetSymbol() == X ? players[1] : players[0];
+}
+
 void TicTacToe::ExecuteGameEvent()
 {
 	while (gameState == InProgress)

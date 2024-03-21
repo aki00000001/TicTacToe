@@ -16,6 +16,8 @@ private:
 public:
 	TicTacToe();
 
+	TicTacToe(char** argv);
+
 	void ExecuteGameEvent();
 
 	void RunGameCycle();
