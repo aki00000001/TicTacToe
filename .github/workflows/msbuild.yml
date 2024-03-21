@@ -47,8 +47,8 @@ jobs:
           
     - name: Execute Run
       working-directory: ${{github.workspace}}/x64/Release
-      shell: cmd
-      run: echo TicTacToe.exe
+      #shell: cmd
+      run: ./TicTacToe.exe
       echo "Akshay"
       echo "c"
       echo "Player2"
