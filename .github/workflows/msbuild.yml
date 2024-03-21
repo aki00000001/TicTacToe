@@ -20,6 +20,10 @@ env:
 permissions:
   contents: read
 
+runs:
+  using: 'node20'
+  main: 'main.js'
+
 jobs:
   build:
     runs-on: windows-latest
