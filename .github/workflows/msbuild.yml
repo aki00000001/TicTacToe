@@ -42,4 +42,4 @@ jobs:
 
     - name: Execute Tests
       working-directory: ${{env.GITHUB_WORKSPACE}}
-      run: echo ${{env.SOLUTION_FILE_PATH}}
+      run: echo ${{env.GITHUB_WORKSPACE}}/
