@@ -42,6 +42,5 @@ jobs:
 
     - name: Execute Tests
       working-directory: ${{github.workspace}}/x64/Release
-      run: ls
-      #shell: cmd
-      #run: TicTacToe.exe TEST
+      shell: cmd
+      run: TicTacToe.exe TEST
