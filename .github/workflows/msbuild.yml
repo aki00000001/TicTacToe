@@ -42,4 +42,4 @@ jobs:
 
     - name: Execute Tests
       # working-directory: ${{env.GITHUB_WORKSPACE}}
-      run: echo ${{env.GITHUB_WORKSPACE}}/TicTacToe/TicTacToe/x64/Release/
+      run: ${{env.GITHUB_WORKSPACE}}/TicTacToe/TicTacToe/x64/Release/TicTacToe.exe TEST
